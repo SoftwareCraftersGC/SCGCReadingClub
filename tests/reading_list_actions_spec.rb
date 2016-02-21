@@ -9,11 +9,15 @@ describe GetReadingListAction do
 
   it 'should get the reading list for a existing user' do
     allow(@repository).to receive(:get_reading_list_for).with('user id').and_return([:book])
-    reading_list = @action.execute('user id')
+    reading_list = get_reading_list_for('user id')
     expect(reading_list).to eq([:book])
   end
 
   it 'should get that list ordered alphabetically' do
+  end
+
+  def get_reading_list_for user_id
+    @action.execute user_id
   end
 end
 
