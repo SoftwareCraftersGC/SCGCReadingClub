@@ -41,12 +41,16 @@ describe AddBookToReadingListAction do
   end
 
   it "should add a book to te user's list" do
-    @action.execute 'user id', :book
+    add_book_to_user 'user id', :book
 
     expect(@repository).to have_received(:add_book_to).with('user id', :book)
   end
 
   xit "should not add two books with same author and title" do
+  end
+
+  def add_book_to_user user_id, book
+    @action.execute user_id, book
   end
 end
 #
