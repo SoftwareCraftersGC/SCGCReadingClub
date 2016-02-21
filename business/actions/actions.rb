@@ -4,6 +4,7 @@ class GetReadingListAction
   end
 
   def execute user_id
-    @repository.get_reading_list_for user_id
+    reading_list = @repository.get_reading_list_for user_id
+    reading_list.sort { |a, b| a.title <=> b.title }
   end
 end

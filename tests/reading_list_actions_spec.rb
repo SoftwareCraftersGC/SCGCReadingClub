@@ -1,4 +1,5 @@
 require_relative '../business/actions/actions'
+require_relative '../business/book'
 
 describe GetReadingListAction do
 
@@ -15,8 +16,12 @@ describe GetReadingListAction do
     expect(reading_list).to eq([:book])
   end
 
-  it 'should get that list ordered alphabetically' do
-    
+  it 'should get that list ordered by title' do
+    allow(@repository).to receive(:get_reading_list_for).with('user id').and_return([Book.new("Title B", "Any"), Book.new("Title A", "Any")])
+
+    reading_list = get_reading_list_for('user id')
+
+    expect(reading_list).to eq([Book.new("Title A", "Any"), Book.new("Title B", "Any")])
   end
 
   def get_reading_list_for user_id
