@@ -4,7 +4,9 @@ class GetReadingListAction
   end
 
   def execute user_id
-    @repository.get_reading_list_for(user_id).sort_by { |book| book['title'] }
+    books = @repository.get_reading_list_for(user_id)
+                        .sort_by { |book| book.title }
+                        .map { |book| {title: book.title, author: book.author}}
   end
 end
 

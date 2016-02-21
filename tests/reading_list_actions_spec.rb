@@ -21,11 +21,11 @@ describe GetReadingListAction do
 
     reading_list = get_reading_list_for('user id')
 
-    expect(reading_list).to eq([first_book, second_book])
+    expect(reading_list).to contain_exactly({title: 'Title A', author: 'Any'}, {title: 'Title B', author: 'Any'})
   end
 
   def book_with title
-    {'title' => title}
+    Book.new title, "Any"
   end
 
   def get_reading_list_for user_id
