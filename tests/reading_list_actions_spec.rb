@@ -39,6 +39,10 @@ describe AddBookToReadingListAction do
     service = ReadingListService.new @repository
     @action = AddBookToReadingListAction.new service
   end
+  
+  it 'should respond to the execute message' do
+    expect(@action).to respond_to(:execute)
+  end
 
   it "should add a book to te user's list" do
     add_book_to_user 'user id', :book
