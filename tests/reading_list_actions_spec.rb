@@ -8,6 +8,10 @@ describe GetReadingListAction do
     @action = GetReadingListAction.new @repository
   end
 
+  it 'should respond to the execute message' do
+    expect(@action).to respond_to(:execute)
+  end
+
   it 'should get that list ordered by title' do
     first_book = book_with "Title A"
     second_book = book_with "Title B"
