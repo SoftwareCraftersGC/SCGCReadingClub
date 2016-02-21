@@ -11,8 +11,8 @@ describe GetReadingListAction do
   it 'should get that list ordered by title' do
     first_book = book_with "Title A"
     second_book = book_with "Title B"
-    books = [second_book, first_book]
-    allow(@repository).to receive(:get_reading_list_for).with('user id').and_return(books)
+    allow(@repository).to receive(:get_reading_list_for).with('user id')
+                      .and_return([second_book, first_book])
 
     reading_list = get_reading_list_for('user id')
 
