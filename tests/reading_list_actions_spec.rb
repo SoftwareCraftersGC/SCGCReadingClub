@@ -1,5 +1,6 @@
 require_relative '../business/actions/actions'
 require_relative '../business/book'
+require_relative '../business/reading_list_service'
 
 describe GetReadingListAction do
 
@@ -32,13 +33,22 @@ describe GetReadingListAction do
   end
 end
 
-# describe AddBookToReadingListAction do
-#   it "should add a book to te user's list" do
-#   end
-#
-#   it "should not add two books with same author and title" do
-#   end
-# end
+describe AddBookToReadingListAction do
+  before :each do
+    @repository = spy('Repository')
+    service = ReadingListService.new @repository
+    @action = AddBookToReadingListAction.new service
+  end
+
+  it "should add a book to te user's list" do
+    @action.execute 'user id', :book
+
+    expect(@repository).to have_received(:add_book_to).with('user id', :book)
+  end
+
+  xit "should not add two books with same author and title" do
+  end
+end
 #
 # describe DeleteBookToReadingListAction do
 #   it "should delete a book from the reading list of a user" do
