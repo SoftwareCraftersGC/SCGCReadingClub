@@ -21,7 +21,12 @@ describe GetReadingListAction do
 
     reading_list = get_reading_list_for('user id')
 
-    expect(reading_list).to contain_exactly({title: 'Title A', author: 'Any'}, {title: 'Title B', author: 'Any'})
+    expect(reading_list).to contain_exactly(book_dto_with('Title A'),
+                                            book_dto_with('Title B'))
+  end
+
+  def book_dto_with title
+    {title: title, author: 'Any'}
   end
 
   def book_with title
