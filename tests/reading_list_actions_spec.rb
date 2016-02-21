@@ -8,14 +8,6 @@ describe GetReadingListAction do
     @action = GetReadingListAction.new @repository
   end
 
-  it 'should get the reading list for a existing user' do
-    allow(@repository).to receive(:get_reading_list_for).with('user id').and_return([:book])
-
-    reading_list = get_reading_list_for('user id')
-
-    expect(reading_list).to eq([:book])
-  end
-
   it 'should get that list ordered by title' do
     allow(@repository).to receive(:get_reading_list_for).with('user id').and_return([Book.new("Title B", "Any"), Book.new("Title A", "Any")])
 
