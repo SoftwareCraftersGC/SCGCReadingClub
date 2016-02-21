@@ -25,7 +25,7 @@ describe GetReadingListAction do
   end
 
   def book_with title
-    Book.new title, "Any"
+    {'title' => title}
   end
 
   def get_reading_list_for user_id
@@ -39,7 +39,7 @@ describe AddBookToReadingListAction do
     service = ReadingListService.new @repository
     @action = AddBookToReadingListAction.new service
   end
-  
+
   it 'should respond to the execute message' do
     expect(@action).to respond_to(:execute)
   end
