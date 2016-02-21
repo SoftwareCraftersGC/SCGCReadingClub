@@ -9,13 +9,17 @@ describe GetReadingListAction do
   end
 
   it 'should get that list ordered by title' do
-    books = [Book.new("Title B", "Any"), Book.new("Title A", "Any")]
+    books = [book_with("Title B"), book_with("Title A")]
     allow(@repository).to receive(:get_reading_list_for).with('user id').and_return(books)
 
     reading_list = get_reading_list_for('user id')
 
-    ordered_books = [Book.new("Title A", "Any"), Book.new("Title B", "Any")]
+    ordered_books = [book_with("Title A"), book_with("Title B")]
     expect(reading_list).to eq(ordered_books)
+  end
+
+  def book_with title
+    Book.new title, "Any"
   end
 
   def get_reading_list_for user_id
